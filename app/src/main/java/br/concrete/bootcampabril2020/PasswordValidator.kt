@@ -11,7 +11,11 @@ class PasswordValidator {
     )
 
     fun validate(password: String): Boolean {
-        return password.length > 7
+        regexList.forEach {
+            if (!password.contains(it))
+                return false
+        }
+        return true
     }
 
 }
