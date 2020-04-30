@@ -3,4 +3,7 @@
     <string name="type_your_email">Digite seu e-mail:</string>
     <string name="type_your_password">Digite sua senha:</string>
     <string name="btn_login">Login</string>
+    <string name="email_empty">E-mail is empty</string>
+    <string name="password_empty">Password is empty</string>
+    <string name="password_invalid">Password is invalid</string>
 </resources>
