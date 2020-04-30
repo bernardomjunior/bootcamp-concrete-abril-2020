@@ -13,58 +13,58 @@ class LoginActivityTest {
     val activityRule = IntentsTestRule(LoginActivity::class.java)
 
     @Test
-    fun givenInitial_shouldShowEmailAndPasswordEmpty(){
-        loginAssert{
+    fun givenInitial_shouldShowEmailAndPasswordEmpty() {
+        loginAssert {
             checkIsEmpty(R.id.email)
             checkIsEmpty(R.id.password)
         }
     }
 
     @Test
-    fun givenEmailIsEmpty_whenLogin_shouldShowEmptyEmailError(){
-        loginAct{
+    fun givenEmailIsEmpty_whenLogin_shouldShowEmptyEmailError() {
+        loginAct {
             type("!@34Dc08", R.id.password)
             click(R.id.login)
         }
-        loginAssert{
+        loginAssert {
             checkMessageShown("E-mail is empty")
         }
     }
 
     @Test
-    fun givenPasswordIsEmpty_whenLogin_shouldShowEmptyPasswordError(){
-        loginAct{
+    fun givenPasswordIsEmpty_whenLogin_shouldShowIsInvalidPasswordError() {
+        loginAct {
             type("daivid.v.leal@concrete.com.br", R.id.email)
             click(R.id.login)
         }
-        loginAssert{
-            checkMessageShown("Password is empty")
+        loginAssert {
+            checkMessageShown("E-mail or Password invalid")
         }
     }
 
     @Test
-    fun givenPasswordIsInvalid_whenLogin_shouldShowPasswordIsInvalidError(){
-        loginAct{
+    fun givenPasswordIsInvalid_whenLogin_shouldShowPasswordIsInvalidError() {
+        loginAct {
             type("daivid.v.leal@concrete.com.br", R.id.email)
             type("!@348", R.id.password)
             click(R.id.login)
         }
-        loginAssert{
-            checkMessageShown("Password is invalid")
+        loginAssert {
+            checkMessageShown("E-mail or Password invalid")
         }
     }
 
     @Test
-    fun givenValidEmailAndPassword_whenLogin_shouldGoToHomeActivity(){
-        loginArrange{
+    fun givenValidEmailAndPassword_whenLogin_shouldGoToHomeActivity() {
+        loginArrange {
             mockHomeActivityIntent()
         }
-        loginAct{
+        loginAct {
             type("daivid.v.leal@concrete.com.br", R.id.email)
             type("!@34DDcc8", R.id.password)
             click(R.id.login)
         }
-        loginAssert{
+        loginAssert {
             checkActivityWasCalled(HomeActivity::class.java.name)
         }
     }

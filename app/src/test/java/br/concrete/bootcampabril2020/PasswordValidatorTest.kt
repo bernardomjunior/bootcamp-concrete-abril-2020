@@ -10,13 +10,13 @@ class PasswordValidatorTest {
     lateinit var passwordValidator: PasswordValidator
 
     @Before
-    fun setUp(){
+    fun setUp() {
         //arrange
         passwordValidator = PasswordValidator()
     }
 
     @Test
-    fun givenPasswordWithShorterThanEight_whenValidate_shouldReturnFalse(){
+    fun givenPasswordWithShorterThanEight_whenValidate_shouldReturnFalse() {
         //act
         val result = passwordValidator.validate("!Aa123b")
         //assert
@@ -25,7 +25,7 @@ class PasswordValidatorTest {
 
 
     @Test
-    fun givenPasswordWithoutUpperLetter_whenValidate_shouldReturnFalse(){
+    fun givenPasswordWithoutUpperLetter_whenValidate_shouldReturnFalse() {
         //act
         val result = passwordValidator.validate("!ad123b8")
         //assert
@@ -33,7 +33,7 @@ class PasswordValidatorTest {
     }
 
     @Test
-    fun givenPasswordWithoutLowLetter_whenValidate_shouldReturnFalse(){
+    fun givenPasswordWithoutLowLetter_whenValidate_shouldReturnFalse() {
         //act
         val result = passwordValidator.validate("!AA123B9")
         //assert
@@ -42,7 +42,7 @@ class PasswordValidatorTest {
 
 
     @Test
-    fun givenPasswordWithoutNumber_whenValidate_shouldReturnFalse(){
+    fun givenPasswordWithoutNumber_whenValidate_shouldReturnFalse() {
         //act
         val result = passwordValidator.validate("!AAAAAsad")
         //assert
@@ -50,7 +50,7 @@ class PasswordValidatorTest {
     }
 
     @Test
-    fun givenPasswordWithoutSpecialChar_whenValidate_shouldReturnFalse(){
+    fun givenPasswordWithoutSpecialChar_whenValidate_shouldReturnFalse() {
         //act
         val result = passwordValidator.validate("AAAbc1234")
         //assert
@@ -58,13 +58,18 @@ class PasswordValidatorTest {
     }
 
     @Test
-    fun givenCorrectPassword_whenValidate_shouldReturnTrue(){
+    fun givenEmptyPassword_whenValidate_shouldReturnFalse() {
+        //act
+        val result = passwordValidator.validate("")
+        //assert
+        Assert.assertFalse(result)
+    }
+
+    @Test
+    fun givenCorrectPassword_whenValidate_shouldReturnTrue() {
         //act
         val result = passwordValidator.validate("!Av1234y")
         //assert
         Assert.assertTrue(result)
     }
-
-
-
 }

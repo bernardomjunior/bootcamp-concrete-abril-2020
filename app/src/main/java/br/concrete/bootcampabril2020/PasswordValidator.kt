@@ -12,9 +12,11 @@ class PasswordValidator {
 
     fun validate(password: String): Boolean {
         regexList.forEach {
-            if (!password.contains(it))
-                return false
+            if (!password.contains(it)) return false
         }
+
+        if (password.isEmpty()) return false
+
         return true
     }
 
